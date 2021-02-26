@@ -1,8 +1,6 @@
 pipeline {
   agent {
-    docker {
-      image 'slaeor_core'
-    }
+  
 
   }
   stages {
