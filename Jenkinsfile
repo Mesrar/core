@@ -8,15 +8,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'docker build'
-        sh 'cd saleor'
-        sh 'pip3 install -r requirements.txt'
-      }
-    }
-
-    stage('test') {
-      steps {
-        sh 'python3 test.py'
+        sh 'docker build -t saleor_marrakech .'
       }
     }
 
