@@ -8,8 +8,6 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'virtualenv -p python3 venv'
-        sh 'virtualenv -p python3.7 venv'
         sh 'pip3 install -r requirements.txt'
       }
     }
