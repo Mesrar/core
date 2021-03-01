@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'pip3 install requirements.txt --user'
+        sh 'pip3 install saleor/requirements.txt --user'
       }
     }
 
