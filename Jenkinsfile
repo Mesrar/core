@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
+        sh 'docker build'
         sh 'cd saleor'
         sh 'pip3 install -r requirements.txt'
       }
