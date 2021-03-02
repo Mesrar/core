@@ -15,11 +15,6 @@ pipeline {
     
     agent any
     
-    parameters {
-      gitParameter name: 'main',
-       type: 'PT_TAG',
-       defaultValue: 'master'
-     }
     
     
     stages {
@@ -44,11 +39,6 @@ pipeline {
         
     }
 }
-
-def getBuildName() {
- "${BUILD_NUMBER}_$appName:${params.RELEASE_TAG}"
-}
-
 def isMaster() {
  "${params.RELEASE_TAG}" == "master"
 }
