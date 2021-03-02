@@ -1,10 +1,5 @@
 pipeline {
- environment {
-  appName = "server"
-  registry = "torkashavnd/django-server"
-  registryCredential = "DjangoServerRegistry"
-  projectPath = "/jenkins/data/workspace/django-server"
- }
+
     agent { dockerfile true }
     stages {
         
