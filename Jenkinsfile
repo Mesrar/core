@@ -37,6 +37,14 @@ pipeline {
             }
         }
      
+     stage('run server'){
+      steps{
+       script{
+         docker.image($registry:${params.RELEASE_TAG}).run()
+       }
+      }
+     }
+     
      stage('Deploy Image') {
         steps {
          script {
