@@ -37,18 +37,10 @@ pipeline {
             }
         }
      
-     stage('run server'){
-      steps{
-       script{
-         docker.image("$registry:${params.RELEASE_TAG}").run("-p 127.0.0.1:8000:8000 ")
-       }
-      }
-     }
-     
      stage('Deploy Image') {
         steps {
          script {
-           docker.withRegistry('', registryCredential) {
+           docker.withRegistry("$registryURL", registryCredential) {
            dockerImage.push()
            }
          }
