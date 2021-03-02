@@ -36,7 +36,7 @@ RUN apt-get update \
  && rm -rf ${PG_HOME} \
  && rm -rf /var/lib/apt/lists/*
 
-COPY runtime/ ${PG_APP_HOME}/
+
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 
