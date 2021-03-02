@@ -8,8 +8,8 @@ pipeline {
     
     environment {
       appName = "server"
-      registry = "mesrar/core"
-      registryCredential = "DjangoServerRegistry"
+      registry = "mesrarbrand/saleor"
+      registryCredential = "dockerHub"
       projectPath = "/var/lib/jenkins/workspace/marrakech_test_qa"
      }
     
@@ -36,6 +36,16 @@ pipeline {
                 sh 'python3 --version'
             }
         }
+     
+     stage('Deploy Image') {
+        steps {
+         script {
+           docker.withRegistry("$registryURL", registryCredential) {
+           dockerImage.push()
+           }
+         }
+        }
+   }
         
     }
 }
