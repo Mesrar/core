@@ -40,7 +40,7 @@ pipeline {
      stage('run server'){
       steps{
        script{
-         docker.image("$registry:${params.RELEASE_TAG}").run()
+         docker.image("$registry:${params.RELEASE_TAG}").run("-p 8080:8080 ")
        }
       }
      }
