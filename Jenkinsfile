@@ -5,7 +5,10 @@ pipeline {
         
       stage('build') {
             steps {
-                sh 'docker build -t core .'
+                script{
+                    docker.build
+                }
+                
             }
       }
         
