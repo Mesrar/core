@@ -1,3 +1,8 @@
+library identifier: 'jenkins-shared@master', retriever: modernSCM(
+ [$class: 'GitSCMSource',
+  remote: 'https://github.com/MobodidTech/jenkins-shared.git',
+ ])
+
 pipeline {
 
     
