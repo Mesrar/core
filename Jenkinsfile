@@ -1,0 +1,54 @@
+library identifier: 'jenkins-shared@master', retriever: modernSCM(
+ [$class: 'GitSCMSource',
+  remote: 'https://github.com/MobodidTech/jenkins-shared.git',
+ ])
+
+pipeline {
+
+    
+    environment {
+      appName = "server"
+      registry = "mesrarbrand/saleor"
+      registryCredential = "dockerHub"
+      projectPath = "/var/lib/jenkins/workspace/marrakech_test_qa"
+     }
+    
+    agent any
+    
+    
+    
+    stages {
+        
+         stage('Build Image') {
+           steps {
+            script {
+             if (isMaster()) {
+              dockerImage = docker.build "$registry:latest"
+             } else {
+              dockerImage = docker.build "$registry:${params.RELEASE_TAG}"
+             }
+            }
+           }
+          }
+        
+        stage('Test') {
+            steps {
+                sh 'python3 --version'
+            }
+        }
+     
+     stage('Deploy Image') {
+        steps {
+         script {
+           docker.withRegistry("$registryURL", registryCredential) {
+           dockerImage.push()
+           }
+         }
+        }
+   }
+        
+    }
+}
+def isMaster() {
+ "${params.RELEASE_TAG}" == "master"
+}
